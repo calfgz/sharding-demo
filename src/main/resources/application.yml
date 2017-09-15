@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: comment-service
+#  datasource:
+#    primary:
+#      type: com.alibaba.druid.pool.DruidDataSource
+#      url: jdbc:mysql://192.168.75.100:3306/ladycosme
+#      driver-class-name: com.mysql.jdbc.Driver
+#      username: ladycosme
+#      password: ladycosme
+#    initialize: true
+#    minIdle: 1
+#    maxActive: 20
+
+server:
+  port: 8080
+
+swagger:
+  title: Spring Boot + MyBatis + Sharding 分表模块
+  version: 1.0
+  base-package: io.github.calfgz.controller
+  base-path: /**
+  contact:
+    name: calfgz
+
+debug: true
+
+logging:
+  level:
+    tk:
+      mybatis: trace
+    org:
+      springframework:
+        web: error
+  file: logs/%d{yyyy-MM-dd}.log
+
+#endpoints.health.sensitive: false
+#management.security.enabled: false
+endpoints:
+  health:
+    enabled: true
+    sensitive: false
+management:
+  security:
+    enabled: false
+  health:
+    db:
+      enabled: false

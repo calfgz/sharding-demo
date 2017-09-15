@@ -1,0 +1,24 @@
+dataSource:
+  ds_0: !!com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.75.100:3306/xxxxx
+    driverClassName: com.mysql.jdbc.Driver
+    username: xxxx
+    password: xxxx
+
+tables:
+  sc_user:
+    actualTables: sc_user_${0..5}
+    tableStrategy:
+      shardingColumns: id
+      algorithmExpression: sc_user_${id.longValue() % 6}
+
+bindingTables:
+  - tableNames: sc_user
+
+#默认数据库分片策略
+defaultDatabaseStrategy:
+  shardingColumns: id
+  algorithmExpression: ds_0
+
+props:
+  sql.show: true
